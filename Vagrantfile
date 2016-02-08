@@ -16,7 +16,7 @@ Vagrant.configure(2) do |config|
         end
     end
 
-    config.vm.network "private_network", ip: "192.168.200.200", lxc__bridge_name: 'vlxcbr1'
+    config.vm.network "private_network", ip: "192.168.200.200"
 
     config.vm.provision "ansible" do |ansible|
         ansible.playbook = "provisioning/dev.yml"
