@@ -1,0 +1,7 @@
+---
+- name: Check redis installed
+  apt: name={{ item }} state=present
+  become: yes
+  with_items:
+    - redis-server
+    - redis-tools
