@@ -10,9 +10,9 @@ Vagrant.configure(2) do |config|
         config.vm.box = 'ubuntu/trusty64'
 
         if host =~ /linux/
-            config.vm.synced_folder "~/projects/waac", "/users/vagrant/projects/waac", type: "nfs"
+            config.vm.synced_folder "~/projects/waac", "/home/vagrant/projects/waac", type: "nfs"
         else
-            config.vm.synced_folder "~/projects/waac", "/users/vagrant/projects/waac"
+            config.vm.synced_folder "~/projects/waac", "/home/vagrant/projects/waac"
         end
     end
 
