@@ -7,3 +7,4 @@
   - {role: common, become: yes}
   - {role: redis, become: yes}
   - {role: ansible-role-nodejs, become: yes}
+  - {role: nginx, become: yes}

@@ -1,0 +1,77 @@
+server {
+    listen 80;
+
+    root /var/www/{{ item.domain_path }}{{ item.entry_path | default('/public') }};
+    index index.php index.html;
+    server_name {{ item.domain_name }};
+
+    add_header X-Server $hostname;
+
+    location / {
+        {% if item.allowed_ips is defined %}
+            {% for ip in item.allowed_ips %}
+                allow {{ ip }};
+            {% endfor %}
+            deny all;
+        {% endif %}
+
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt  { access_log off; log_not_found off; }
+
+    access_log off;
+
+    location ~ \.php$ {
+        {% if item.cors_domains is defined %}
+            # If request comes from allowed subdomain
+            {% if "*" in item.cors_domains %}
+                set $cors "true";
+            {% else %}
+                {% for domain in item.cors_domains %}
+                    if ($http_origin = "{{ domain }}") {
+                        set $cors "true";
+                    }
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+
+        # Check OPTIONS method
+        if ($request_method = 'OPTIONS') {
+            set $cors "${cors}_option";
+        }
+
+        # Add headers for CORS domain.
+        if ($cors = "true") {
+           more_set_headers 'Access-Control-Allow-Origin: $http_origin';
+           more_set_headers 'Access-Control-Allow-Credentials: true';
+        }
+
+        # Add headers for OPTIONS method
+        if ($cors = "true_option") {
+           more_set_headers 'Access-Control-Allow-Origin: $http_origin';
+           more_set_headers 'Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE';
+           more_set_headers 'Access-Control-Allow-Credentials: true';
+           more_set_headers 'Access-Control-Allow-Headers: Origin,Content-Type,Accept';
+           add_header Content-Length 0;
+           add_header Content-Type text/plain;
+           return 204;
+        }
+
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        try_files $uri /index.php =404;
+        include fastcgi_params;
+        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+
+    location ~ /\.git {
+        deny all;
+    }
+}
