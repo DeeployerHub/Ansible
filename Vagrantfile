@@ -1,5 +1,6 @@
 Vagrant.configure(2) do |config|
     config.vm.provider "virtualbox" do |v|
+	v.name = "WAAC_Ansible"
         host = RbConfig::CONFIG['host_os']
         if host =~ /darwin/
             v.cpus = `sysctl -n hw.ncpu`.to_i
@@ -23,3 +24,4 @@ Vagrant.configure(2) do |config|
         ansible.verbose = "v"
     end
 end
+
