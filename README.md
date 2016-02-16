@@ -12,9 +12,7 @@ sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
 sudo launchctl stop homebrew.mxcl.dnsmasq
 sudo mkdir -p /etc/resolver
 sudo tee /etc/resolver/deeployer.dev.com > /dev/null <<EOF
-    nameserver 127.0.0.1
-    domain dev
-    search_order 1
+nameserver nameserver 127.0.0.1
 EOF
 
 sudo launchctl start homebrew.mxcl.dnsmasq
