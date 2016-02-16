@@ -1,1 +1,1 @@
-{"virtualbox":{"/projects/waac":{"guestpath":"/projects/waac","hostpath":"/Users/Mahan/projects/waac","disabled":false},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/Mahan/projects/waac/ansible","disabled":false}}}
+{"virtualbox":{"/projects/waac":{"guestpath":"/projects/waac","hostpath":"/Users/Mahan/projects/waac","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/Mahan/projects/waac/ansible","disabled":false,"__vagrantfile":true}}}
