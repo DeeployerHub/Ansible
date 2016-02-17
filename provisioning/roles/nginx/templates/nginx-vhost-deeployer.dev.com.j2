@@ -1,7 +1,7 @@
 server {
     listen 80;
 
-    server_name {{ item.nginx_subdomain ? item.nginx_subdomain + '.' : '' }}{{ item.domain_name }};
+    server_name {{ item.nginx_subdomain | default('') }}{{ item.domain_name }} {{ item.domain_name }};
 
     location / {
         proxy_redirect      off;

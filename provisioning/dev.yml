@@ -5,6 +5,7 @@
   remote_user: vagrant
   roles:
   - {role: common, become: yes}
-  - {role: redis, become: yes}
   - {role: ansible-role-nodejs, become: yes}
   - {role: nginx, become: yes}
+  - {role: redis, become: yes}
+  - {role: waac_node_start, become: yes}

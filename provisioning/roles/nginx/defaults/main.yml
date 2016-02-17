@@ -1,8 +1,8 @@
 hosts:
   - {
-      domain_name: deeployer.dev.com
-      nginx_subdomain: *
-      nginx_template: nginx-vhost-deeployer.dev.com.j2
-      proxy_path: http://127.0.0.1:7000
+      domain_name: deeployer.dev.com,
+      nginx_subdomain: '*.',
+      nginx_template: nginx-vhost-deeployer.dev.com.j2,
+      nginx_proxy_path: 'http://127.0.0.1:7000'
     }
 become: yes

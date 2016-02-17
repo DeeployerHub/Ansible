@@ -1,6 +1,6 @@
 ---
 - name: Check nginx installed
-  apt: name=nginx state=present
+  apt: name=nginx state=latest
 
 - name: Start nginx
   service:
@@ -28,3 +28,14 @@
   notify:
     - reload nginx
 
+- name: Disable the default site
+  file: path=/etc/nginx/sites-enabled/default state=absent
+  notify:
+  - reload nginx
+  tags: [configuration,nginx]
+
+- name: Remove the default configuration
+  file: path=/etc/nginx/sites-available/default state=absent
+  notify:
+  - reload nginx
+  tags: [configuration,nginx]

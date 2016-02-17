@@ -7,7 +7,7 @@ Vagrant.configure(2) do |config|
         elsif host =~ /linux/
             v.cpus = `nproc`.to_i
         end
-        v.customize ["modifyvm", :id, "--memory", 1024]
+        v.customize ["modifyvm", :id, "--memory", 512]
         config.vm.box = 'ubuntu/trusty64'
 
         if host =~ /linux/
