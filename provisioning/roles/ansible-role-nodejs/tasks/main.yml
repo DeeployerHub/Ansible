@@ -5,6 +5,9 @@
 - include: setup-Debian.yml
   when: ansible_os_family == 'Debian'
 
+- name: Install Supervisor (to run Node.js apps).
+  npm: name=supervisor global=yes state=latest
+
 - name: Install forever (to run Node.js apps).
   npm: name=forever global=yes state=latest
   when: nodejs_forever
