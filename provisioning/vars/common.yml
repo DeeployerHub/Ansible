@@ -7,8 +7,6 @@ worker_group: vagrant
 nodejs_forever: true
 nodejs_npm_global_packages:
   - name: npm-registry-client
-  - name: forever
-  - name: supervisor
   - name: node-sass
   - name: node-less
 

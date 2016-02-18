@@ -5,6 +5,18 @@
 - include: setup-Debian.yml
   when: ansible_os_family == 'Debian'
 
+- name: Install Supervisor (to run Node.js apps).
+  npm: name=supervisor global=yes state=latest
+
+- name: Install forever (to run Node.js apps).
+  npm: name=forever global=yes state=latest
+  when: nodejs_forever
+
+- name: "Check list of Node.js apps running."
+  command: forever list
+  register: forever_list
+  changed_when: false
+
 - name: Install additional defined npm global packages.
   npm:
     name: "{{ item.name }}"
@@ -12,6 +24,5 @@
     global: yes
     state: latest
   with_items: nodejs_npm_global_packages
-  
 - name: update npm
   npm: name=npm global=yes state=latest
