@@ -43,17 +43,39 @@ git clone git@github.com:WAAC/Ansible.git ansible
 git clone git@github.com:WAAC/d-web.git w-web
 ```
 
-## Install Ansible & Vagrant
+## Install Vagrant
 * Linux 
 ```
-sudo apt-get install vagrant ansible virtualbox nfs-kernel-server
+sudo apt-get install vagrant virtualbox nfs-kernel-server
 ```
 * Mac 
 ```
 # make sure you installed virtual box before you start to head to this process
 brew cask install vagrant
-brew install ansible
 ```
+
+## Install Ansible (stable-1.9.4)
+```
+# make sure python and pip are installed on machine system
+sudo pip install paramiko PyYAML Jinja2 httplib2 six
+cd /tmp
+git clone git://github.com/ansible/ansible.git —recursive
+cd ansible
+git checkout stable-1.9
+git pull --rebase
+git submodule update --init --recursive
+
+# just to make sure that it doesn't have any error (you can totaly ignore it)
+source ./hacking/env-setup
+
+make
+make install
+
+ansible --version
+# expected result: ansible 1.9.4
+
+```
+
 
 ## Start
 ```
