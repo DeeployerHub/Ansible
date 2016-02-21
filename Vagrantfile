@@ -23,6 +23,8 @@ Vagrant.configure(2) do |config|
 
     config.vm.network "private_network", ip: "192.168.200.200", lxc__bridge_name: 'vlxcbr1'
 
+    config.vm.network "forwarded_port", guest: 27017, host: 27017
+
     config.vm.provision "ansible" do |ansible|
         ansible.playbook = "provisioning/dev.yml"
         ansible.verbose = "v"
