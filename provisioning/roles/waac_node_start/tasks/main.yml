@@ -1,3 +1,0 @@
----
-- name: "Start app"
-  shell: chdir=/home/vagrant/projects/waac/d-web npm start

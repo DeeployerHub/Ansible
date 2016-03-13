@@ -9,4 +9,3 @@
   - {role: ansible-role-nodejs, become: yes}
   - {role: nginx, become: yes}
   - {role: redis, become: yes}
-  - {role: waac_node_start, become: yes}
