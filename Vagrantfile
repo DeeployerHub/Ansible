@@ -19,7 +19,7 @@ Vagrant.configure(2) do |config|
     config.vm.network "private_network", ip: "192.168.200.200"
 
     config.vm.network "forwarded_port", guest: 27017, host: 27017
-    config.vm.network "forwarded_port", guest: 6379, host: 6379
+    config.vm.network "forwarded_port", guest: 6379, host: 63799
     
     config.vm.provision "ansible" do |ansible|
         ansible.playbook = "provisioning/dev.yml"
@@ -27,7 +27,6 @@ Vagrant.configure(2) do |config|
     end
 
     config.vm.provider :lxc do |lxc|
-        # Same effect as 'customize ["modifyvm", :id, "--memory", "1024"]' for VirtualBox
         lxc.customize 'cgroup.memory.limit_in_bytes', '1024M'
     end
 end
