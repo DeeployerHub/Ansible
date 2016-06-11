@@ -11,14 +11,9 @@ Vagrant.configure(2) do |config|
         config.vm.box = 'ubuntu/trusty64'
         config.vm.box_check_update = false
 
-        config.vm.synced_folder "~/projects/waac", "/home/vagrant/projects/waac", owner: "vagrant", group: "vagrant"
 
-        config.vm.provider "lxc" do |v, override|
-            v.container_name = 'WAAC_Ansible'
-            override.vm.box = 'fgrehm/trusty64-lxc'
-            override.vm.box_url = 'https://vagrantcloud.com/fgrehm/trusty64-lxc'
-            override.vm.synced_folder "~/projects/waac", "/home/vagrant/projects/waac", type: "nfs"
-        end
+        config.vm.synced_folder "~/projects/DeeployerHub", "/home/vagrant/projects/DeeployerHub-nfs", type: "nfs",  mount_options: ['rw', 'vers=3', 'tcp', 'actimeo=2']
+        config.bindfs.bind_folder "/home/vagrant/projects/DeeployerHub-nfs", "/home/vagrant/projects/DeeployerHub"
     end
 
     config.vm.network "private_network", ip: "192.168.200.200", lxc__bridge_name: 'vlxcbr1'

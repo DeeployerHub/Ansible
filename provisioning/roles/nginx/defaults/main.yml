@@ -3,6 +3,8 @@ hosts:
       domain_name: deeployer.dev.com,
       nginx_subdomain: '',
       nginx_template: nginx-vhost-deeployer.dev.com.j2,
-      nginx_proxy_path: '127.0.0.1:7000'
+      nginx_proxy_path: '127.0.0.1:7000',
+      nginx_ssl_crt_path: '/home/vagrant/projects/DeeployerHub/Web/sslcert/dev/server.crt',
+      nginx_ssl_key_path: '/home/vagrant/projects/DeeployerHub/Web/sslcert/dev/server.key'
     }
 become: yes
