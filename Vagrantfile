@@ -25,5 +25,10 @@ Vagrant.configure(2) do |config|
         ansible.playbook = "provisioning/dev.yml"
         ansible.verbose = "v"
     end
+
+    config.vm.provider :lxc do |lxc|
+        # Same effect as 'customize ["modifyvm", :id, "--memory", "1024"]' for VirtualBox
+        lxc.customize 'cgroup.memory.limit_in_bytes', '1024M'
+    end
 end
 
