@@ -12,8 +12,8 @@ Vagrant.configure(2) do |config|
         config.vm.box_check_update = false
 
 
-        config.vm.synced_folder "~/projects/DeeployerHub", "/home/vagrant/projects/DeeployerHub-nfs", type: "nfs",  mount_options: ['rw', 'vers=3', 'tcp', 'actimeo=2']
-        config.bindfs.bind_folder "/home/vagrant/projects/DeeployerHub-nfs", "/home/vagrant/projects/DeeployerHub"
+        config.vm.synced_folder "~/projects/DeeployerHub", "/home/vagrant/nfs/projects/DeeployerHub", type: "nfs",  mount_options: ['rw', 'vers=3', 'tcp', 'actimeo=2']
+        config.bindfs.bind_folder "/home/vagrant/nfs/projects/DeeployerHub", "/home/vagrant/projects/DeeployerHub"
     end
 
     config.vm.network "private_network", ip: "192.168.200.200"
