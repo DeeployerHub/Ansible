@@ -4,14 +4,14 @@
 * Mac 
 ```
 brew install dnsmasq
-echo 'address=/.deeployer.dev.com/192.168.200.200' > /usr/local/etc/dnsmasq.conf
+echo 'address=/.dev.eloyt.com/192.168.200.200' > /usr/local/etc/dnsmasq.conf
 
 sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons
 sudo chown root /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
 sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
 sudo launchctl stop homebrew.mxcl.dnsmasq
 sudo mkdir -p /etc/resolver
-sudo tee /etc/resolver/deeployer.dev.com > /dev/null <<EOF
+sudo tee /etc/resolver/dev.eloyt.com > /dev/null <<EOF
 nameserver 127.0.0.1
 EOF
 

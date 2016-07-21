@@ -15,8 +15,8 @@ server {
     ssl on;
 
     server_name         {{ item.nginx_subdomain | default('') }}{{ item.domain_name }};
-    ssl_certificate     /home/vagrant/projects/DeeployerHub/Web/sslcert/dev/server.crt;
-    ssl_certificate_key /home/vagrant/projects/DeeployerHub/Web/sslcert/dev/server.key;
+    ssl_certificate     /home/vagrant/projects/eloythub/eloyt.com/sslcert/dev/server.crt;
+    ssl_certificate_key /home/vagrant/projects/eloythub/eloyt.com/sslcert/dev/server.key;
     ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
     ssl_ciphers         HIGH:!aNULL:!MD5;
 
